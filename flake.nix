@@ -17,6 +17,11 @@
             vendorSha256 = "euft4bcFO3VFbubN50IDBlYY2zzEmawDzwmpbZsUiCA=";
           };
 
+          apps.default = utils.lib.mkApp {
+            drv = packages.default;
+            exePath = "/bin/uncommitted";
+          };
+
           devShells.default = mkShell { nativeBuildInputs = [ go gopls ]; };
         }) // {
       overlays.default = (final: _: {

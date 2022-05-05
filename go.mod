@@ -1,4 +1,4 @@
-module mtoohey.com/uncommitted-go
+module mtoohey.com/uncommitted
 
 go 1.17
 
