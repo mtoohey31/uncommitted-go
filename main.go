@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path"
 	"sync"
+	"sync/atomic"
 
 	"github.com/alecthomas/kong"
 )
@@ -17,8 +18,7 @@ var CLI struct {
 }
 
 var vcsPaths map[string]string
-var count uint
-var countM sync.Mutex
+var count uint32
 
 func main() {
 	_ = kong.Parse(&CLI)
@@ -87,9 +87,7 @@ func traverse(p string, wg *sync.WaitGroup) {
 	}
 	if len(out) > 0 {
 		if CLI.Count {
-			countM.Lock()
-			defer countM.Unlock()
-			count += 1
+			atomic.AddUint32(&count, 1)
 		} else {
 			fmt.Printf("%s - %s\n%s", p, name, out)
 		}
