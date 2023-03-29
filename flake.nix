@@ -14,7 +14,7 @@
             name = "uncommitted-go";
             pname = name;
             src = ./.;
-            vendorSha256 = "euft4bcFO3VFbubN50IDBlYY2zzEmawDzwmpbZsUiCA=";
+            vendorSha256 = null;
           };
 
           apps.default = utils.lib.mkApp {
